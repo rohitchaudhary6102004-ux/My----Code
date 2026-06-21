@@ -28,5 +28,10 @@ int main(){
     cout<<num1<<endl;//13
     num2 -= 2;
     cout<<num2<<endl;//2
-    return 0;
+   
+
+   bool  r = 5 < 4;
+    cout << "Result of r is : ";
+    cout << r;
+     return 0;
 }
