@@ -1,24 +1,149 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            body{
+                background-color: #4c4646;
+                font-size: 20px;
+            }
+            #status1{
+                color: orange;
+            }
+            #Dashboard{
+                color: cyan;
+            }
+            .connection{
+                color: green;
+            }
+            #temperature{
+                border: 2px solid #6fe11e;
+                padding: 10px;
+                border-radius: 10px;
+                margin: 20px;
+
+                width: 300px;
+                text-align: center;
+
+                box-shadow: 0px 0px 50px #1e5fd0;
+                transition: 0.5s;
+            }
+            #pressure{
+                border: 2px solid #270fc4;
+                padding: 10px;
+                border-radius: 10px;
+                margin: 20px;
+
+                width: 300px;
+                text-align: center;
+
+                box-shadow: 0px 0px 50px #1e5fd0;
+                transition: 0.5s;
+            }
+            #temperature:hover{
+                background-color: #0f27c1;
+                transform: scale(1.1);
+            }
+            #pressure:hover{
+                background-color: #0b0e94;
+                transform: scale(1.1);
+            }
+            #ledStatus{
+                border: 2px solid #0f27c1;
+                width: 300px;
+                text-align: center;
+            }
+            #ledButton{
+                font-size: 25px;
+                text-align: center;
+            }
+            #ledButton:hover{
+                background-color: #b40808;
+            }
+            #humdity{
+                border: 2px solid white;
+                border-radius: 10px;
+                padding: 10px;
+                margin: 20px;
+
+                width: 300px;
+                text-align: center;
+
+                box-shadow: 0px 0px 20px blue;
+                transition: 0.5s;
+            }
+            #humdity:hover{
+                background-color: #0b0e94;
+                transform: scale(1.1);
+            }
+        </style>
         <title>ATTR</title>
-        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        <h1 id="Dashoard">
+        <h1 id="Dashboard">
             Rohit IOT DASHBOARD
         </h1>
+        <p id="status1">ESP32 Web Monitoring System</p>
         <h2 class="connection">
             MQTT CONNECTED
         </h2>
         <h2 class="connection">
             ModBus Connected
         </h2>
+        <button id="ledButton" onclick="ledOn()">
+            LED 
+        </button>
+        <p id="ledStatus">
+            LED OFF
+        </p>
         <p id="temperature">
-            Temperature : 25°
+            Temperature : 25°C
+        </p>
+        <p id="status"> 
+            Sensor Offline
         </p>
         <p id="pressure">
-           Pressure : 1.0123 KPa
+           Pressure : 1 KPa
         </p>
+        <p id="humdity">
+            Humdity : 60 %
+        </p>
+      <script>
+        let temperature;
+        let pressure;
+        let humidity;
+        let ledState = false;
+        setInterval(function(){
+            temperature = Math.random()*10 + 25;
+            pressure = Math.random()*2 + 1;
+            humidity = Math.random()*10 + 40;
+            if(temperature > 33){
+                document.getElementById("status").innerHTML="Sensor OverHeated";
+                document.getElementById("status").style.color="red";
+            }else{
+                document.getElementById("status").innerHTML="Sensor Online";
+                document.getElementById("status").style.color="white";
+            }
+        document.getElementById("temperature").innerHTML="Temperature : " + temperature.toFixed(2) + "°C";
+        document.getElementById("pressure").innerHTML="Pressure : " + pressure.toFixed(3) + "kPa";
+        document.getElementById("humdity").innerHTML="Humidity : " + humidity.toFixed(2) + "%";
+        },1000);
+        function ledOn(){
+            if(ledState == false){
+                ledState = true;
+                 document.getElementById("ledStatus").innerHTML="LED ON";
+                 document.getElementById("ledStatus").style.color = "white";
+                 document.getElementById("ledStatus").style.backgroundColor = "green";
+                
+            }
+            else{
+                 document.getElementById("ledStatus").innerHTML="LED OFF";
+                 document.getElementById("ledStatus").style.color = "white";
+                 document.getElementById("ledStatus").style.backgroundColor = "red";
+                 
+                 ledState = false;
+            }
+           
+        }
+      </script>
     </body>
 </html>
