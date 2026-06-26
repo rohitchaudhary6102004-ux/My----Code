@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int n;
+    cin >> n;
+
+    vector<int> v(n);
+    for(int i=0;i<n;i++){
+        cin >> v[i];
+    }
+    const int N =1e5 + 10;
+    vector<int> freq(N, 0);
+    for(int i=0;i<n;i++){
+        freq[v[i]]++;
+    }
+
+    cout << "Enter Queries : ";
+    int q; cin >> q;
+
+    while(q--){
+      int element;
+      cout << "Enter the Element you want to search : ";
+      cin >> element;
+      cout << "Occurence of that Element is : " << freq[element];
+    }
+}
