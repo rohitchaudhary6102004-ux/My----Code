@@ -1,3 +1,5 @@
+// Given Q queries, check if the element is present in the array or not
+
 #include <iostream>
 #include <vector>
 using namespace std;
