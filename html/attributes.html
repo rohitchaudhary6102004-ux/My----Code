@@ -36,7 +36,7 @@
                 width: 300px;
                 text-align: center;
 
-                box-shadow: 0px 0px 50px #1e5fd0;
+                box-shadow: 0px 0px 30px #1e5fd0;
                 transition: 0.5s;
             }
             #temperature:hover{
@@ -108,28 +108,39 @@
             Humdity : 60 %
         </p>
       <script>
-        let temperature;
-        let pressure;
-        let humidity;
-        let ledState = false;
-        setInterval(function(){
-            temperature = Math.random()*10 + 25;
-            pressure = Math.random()*2 + 1;
-            humidity = Math.random()*10 + 40;
-            if(temperature > 33){
+        function updateDashboard(){
+                    document.getElementById("temperature").innerHTML="Temperature : " + sensor.temperature.toFixed(2) + "°C";
+        document.getElementById("pressure").innerHTML="Pressure : " + sensor.pressure.toFixed(3) + "kPa";
+        document.getElementById("humdity").innerHTML="Humidity : " + sensor.humidity.toFixed(2) + "%";
+        }
+        function updateStatus(){
+                    if(sensor.temperature > 33){
                 document.getElementById("status").innerHTML="Sensor OverHeated";
                 document.getElementById("status").style.color="red";
             }else{
                 document.getElementById("status").innerHTML="Sensor Online";
                 document.getElementById("status").style.color="white";
             }
-        document.getElementById("temperature").innerHTML="Temperature : " + temperature.toFixed(2) + "°C";
-        document.getElementById("pressure").innerHTML="Pressure : " + pressure.toFixed(3) + "kPa";
-        document.getElementById("humdity").innerHTML="Humidity : " + humidity.toFixed(2) + "%";
+        }
+
+        let sensor = {
+                temperature:25,
+                pressure:1.2,
+                humidity:60,
+                ledState: false
+        };
+
+        setInterval(function(){
+            sensor.temperature = Math.random()*10 + 25;
+            sensor.pressure = Math.random()*2 + 1;
+            sensor.humidity = Math.random()*10 + 40;
+            updateDashboard();
+            updateStatus();
         },1000);
+
         function ledOn(){
-            if(ledState == false){
-                ledState = true;
+            if(sensor.ledState == false){
+                sensor.ledState = true;
                  document.getElementById("ledStatus").innerHTML="LED ON";
                  document.getElementById("ledStatus").style.color = "white";
                  document.getElementById("ledStatus").style.backgroundColor = "green";
@@ -139,8 +150,7 @@
                  document.getElementById("ledStatus").innerHTML="LED OFF";
                  document.getElementById("ledStatus").style.color = "white";
                  document.getElementById("ledStatus").style.backgroundColor = "red";
-                 
-                 ledState = false;
+                 sensor.ledState = false;
             }
            
         }
