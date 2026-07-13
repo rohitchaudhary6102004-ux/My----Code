@@ -1,1 +1,0 @@
-print("Sqaure of the number is : ", a*a)
