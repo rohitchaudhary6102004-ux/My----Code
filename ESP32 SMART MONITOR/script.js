@@ -1,46 +1,37 @@
-// Temperature & Humidity Values
 
 let temperature = 32;
 let humidity = 60;
-
-
-// HTML Elements
 
 const temp = document.getElementById("temp");
 const hum = document.getElementById("hum");
 const time = document.getElementById("time");
 
-
-// Last Updated Time
-
-function updateTime()
-{
+function updateTime() {
     const now = new Date();
 
     time.innerHTML = now.toLocaleTimeString();
 }
 
+async function updateSensor() {
+    try {
+        const tempResponse = await fetch("/temperature");
+        const humResponse = await fetch("/humidity");
 
-// Sensor Values
+        const temperature = await tempResponse.text();
+        const humidity = await humResponse.text();
 
-function updateSensor()
-{
+        temp.innerHTML = temperature + "°C";
 
-    temperature = (30 + Math.random() * 5).toFixed(1);
+        hum.innerHTML = humidity + "%";
 
-    humidity = (55 + Math.random() * 10).toFixed(1);
-
-    temp.innerHTML = temperature + "°C";
-
-    hum.innerHTML = humidity + "%";
-
-    updateTime();
+        updateTime();
+    }
+    catch (error) {
+        console.log("Fetch Error:", error);
+    }
 
 }
 
-
-// Start Dashboard
-
 updateSensor();
 
-setInterval(updateSensor,1000);
+setInterval(updateSensor, 1000);
