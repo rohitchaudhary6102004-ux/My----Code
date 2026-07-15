@@ -1,4 +1,10 @@
 # Write a program to find whether a given number is prime or not.
-number = int(input("Enter your Number : "))
- 
- 
+n = int(input("Enter your Number : "))
+
+for i in range (2, n):
+    if (n % i) == 0:
+        print("Number is not Prime")
+        break
+else:
+    print("Number is Prime")        
+    
