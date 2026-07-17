@@ -2,7 +2,7 @@
 class Employee:
     company = "ENE"
     
-    def __init__(self, company):
+    def __init__(self, company): # Dunder method which is auromatically called
         self.company = company
         print(f"My Company name is : {company}")
         
