@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html><head>
+        <title>Rohit's IOT Lab</title>
+		 <!-- <link rel="stylesheet" href="./style.css"> -->
+		  <style>
+			body{
+        background-color: #0d0d0d;
+      }
+      .parameters{
+        border: 2px solid white;
+      }
+      .dashboard{
+        color: #340fc8;
+      }
+      .Welcome{
+        color: cyan;
+      }
+
+		  </style>
+    </head>
+    <body>
+        <div>
+         <h1 class="Welcome">Welcome to My ESP-32 Project</h1>
+         <p> MQTT and Modbus are Connected</p>
+         <h2>Buttons:</h2>
+         <button>Start</button><br>
+         <br>
+         <button>Stop</button>
+         </div>
+        <h1 class="dashBoard">Rohit IOT DashBoard</h1>
+        <div class="parameters">
+            <h2>Communication</h2>
+            <p >MQTT Connected</p>
+            <h2>Sensors : </h2>
+            <h3 id="temperature">Temperature : 25°C</h3>
+            <h3 id="pressure">Pressure : 5.5 kPa </h3>
+        </div>
+
+</body></html>
