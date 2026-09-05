@@ -1,0 +1,17 @@
+
+class Employee:
+    company = "ENE"
+    
+    def __init__(self, company): # Dunder method which is auromatically called
+        self.company = company
+        print(f"My Company name is : {company}")
+        
+    def greet(self, name):
+        
+        print("Good Morning", name)    
+        
+rohit = Employee("MicroSoft") # Employee.__init__(rohit)
+print(rohit.company)
+rohit.company = "Google"
+print(rohit.company)
+rohit.greet("Rohit")     
